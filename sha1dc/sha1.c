@@ -69,6 +69,15 @@
 #define SHA1DC_BIGENDIAN
 #endif
 
+/* Not under GCC-alike */
+#elif defined(BYTE_ORDER) && defined(BIG_ENDIAN)
+/*
+ * AIX doesn't use _ or __ in its macro definitions so we'll be using these
+ */
+#if BYTE_ORDER == BIG_ENDIAN
+#define SHA1DC_BIGENDIAN
+#endif
+
 /* Not under GCC-alike or glibc */
 #elif defined(_BYTE_ORDER) && defined(_BIG_ENDIAN) && defined(_LITTLE_ENDIAN)
 /*
